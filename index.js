@@ -1,26 +1,27 @@
 const contactsOperations = require("./contacts");
+const { program } = require('commander');
 
-const operationsContacts = async ({action, id, name, email, phone}) => {
+const invokeAction = async ({action, id, name, email, phone}) => {
     switch (action) {
 
-        case "listContacts":
+        case "getAll":
             const contactsList = await contactsOperations.listContacts();
             console.log(contactsList);
             break;
         
-        case "getContactById":
+        case "getById":
             const contactById = await contactsOperations.getContactById(id);
             console.log(contactById);
             break;
         
-        case "addContact":
-            const newContact = await contactsOperations.addContact(data);
+        case "add":
+            const newContact = await contactsOperations.addContact({name, email, phone});
             console.log(newContact);
             break;
         
-        case "removeContact":
-            const delContact = await contactsOperations.removeContact(id);
-            console.log(delContact);
+        case "removeById":
+            const removeContact = await contactsOperations.removeContact(id);
+            console.log(removeContact);
             break;
         
         default:
@@ -28,16 +29,15 @@ const operationsContacts = async ({action, id, name, email, phone}) => {
     }
 };
 
-const id = "3";
+program
+  .option('-a, --action <type>', 'choose action')
+  .option('-i, --id <type>', 'user id')
+  .option('-n, --name <type>', 'user name')
+  .option('-e, --email <type>', 'user email')
+  .option('-p, --phone <type>', 'user phone');
 
-// const id = "uQwM0XDdwaEej2sLOKRY9";
+program.parse(process.argv);
 
-const data = {
-    name: "Aleksender Petrov",
-    email: "123@ua.com",
-    phone: "+3801321534684"
-}
-// operationsContacts({action: "listContacts"});
-operationsContacts({action: "getContactById", id});
-// operationsContacts({ action: "addContact", data });
-// operationsContacts({action: "removeContact", id});
+const argv = program.opts();
+
+invokeAction(argv);
