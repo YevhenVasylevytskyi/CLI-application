@@ -1,4 +1,4 @@
-const contactsOperations = require("./db");
+const contactsOperations = require("./contacts");
 
 const operationsContacts = async ({action, id, name, email, phone}) => {
     switch (action) {
@@ -28,9 +28,9 @@ const operationsContacts = async ({action, id, name, email, phone}) => {
     }
 };
 
-// const id = "3";
+const id = "3";
 
-const id = "iSTnwoY6vmV9iHgoURzmd";
+// const id = "uQwM0XDdwaEej2sLOKRY9";
 
 const data = {
     name: "Aleksender Petrov",
@@ -38,6 +38,6 @@ const data = {
     phone: "+3801321534684"
 }
 // operationsContacts({action: "listContacts"});
-// operationsContacts({action: "getContactById", id});
+operationsContacts({action: "getContactById", id});
 // operationsContacts({ action: "addContact", data });
-operationsContacts({action: "removeContact", id});
+// operationsContacts({action: "removeContact", id});
