@@ -11,7 +11,7 @@ async function listContacts() {
         return contacts; 
     }
     catch (error) {
-        console.log(error);
+        console.error(error.massage);
     }
 }
 
@@ -25,7 +25,7 @@ async function getContactById(id) {
             return contact;
     }
     catch (error) {
-        console.log(error);
+        console.error(error.massage);
     }
 }
 
@@ -42,7 +42,7 @@ async function removeContact(id) {
             return deleteContact;
     }
     catch (error) {
-        console.log(error);
+        console.error(error.massage);
     }
 }
 
@@ -56,7 +56,7 @@ async function addContact(data) {
         return newContact;
     }
     catch (error) {
-        console.log(error);
+        console.error(error.massage);
     }
 }
 
